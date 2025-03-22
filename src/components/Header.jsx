@@ -62,7 +62,7 @@ export default function Header(){
     .then(res=>{
         console.log(res.message);
         dispatch(logout());
-        navigate('/');
+        navigate('/login');
     }).catch(err=>console.log(err.message));
   }
 
@@ -92,14 +92,29 @@ export default function Header(){
             placeholder="Search..."
             className="bg-black border-1 border-[#3b3a3a] hidden text-white px-3 py-2 rounded-lg md:w-[50vw] md:block  "
             />
-            { text.length>0 ? <div className='absolute top-28 md:top-15 md:w-[50vw] w-[95vw] left-5 md:left-20  border-1 rounded-lg mt-1 bg-[#171717] border-white   px-2 flex-col'>
-              {data.map(item=> {
-                return ( item.error ? <div className='my-2'>{item.error}</div> : <Link to={`/blog/${item._id}`} onClick={()=>setText("")} ><div className='my-4'>
-                  <div className='text-sm'>@{item.author}</div>
-                  <div>{item.title}</div>
-                </div></Link>)
-              })}
-            </div> : null }
+            { text.length > 0 && (
+              <div className='absolute top-28 md:top-15 md:w-[50vw] w-[95vw] left-5 md:left-20 border-1 rounded-lg mt-1 bg-[#171717] border-white px-2 flex-col'>
+                {!load ? (
+                  data.map((item) => (
+                    <div key={item._id || item.error} className='my-4'>
+                      {item.error ? (
+                        <div className='my-2'>{item.error}</div>
+                      ) : (
+                        <Link to={`/blog/${item._id}`} onClick={() => setText("")}>
+                          <div>
+                            <div className='text-sm'>@{item.author}</div>
+                            <div>{item.title}</div>
+                          </div>
+                        </Link>
+                      )}
+                    </div>
+                  ))
+                ) : (
+                  <div>Loading...</div>
+                )}
+              </div>
+            )}
+
           </div>
         </div>
         <div className='flex gap-2'>

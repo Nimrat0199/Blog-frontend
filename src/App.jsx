@@ -25,7 +25,7 @@ function App() {
         dispatch(login(userData))
       } else {
         dispatch(logout());
-        console.log("login required")
+        navigate('/login')
       }
     })
     .catch((err) => console.error("Error fetching user:", err))
