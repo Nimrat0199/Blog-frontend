@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: { //http://localhost:3000/https://blogbackend-production-dcc5.up.railway.app/https://blog-backend-zq11.onrender.com
       "/api": {
-        target: "https://blog-backend-zq11.onrender.com",
+        target: "https://blogbackend-production-dcc5.up.railway.app/",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
