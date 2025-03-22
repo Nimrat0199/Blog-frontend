@@ -68,7 +68,7 @@ export default function Header(){
 
 
   return (
-    <header className="bg-[#171717]  text-white pt-3 pb-1 px-1 md:px-3 ">
+    <header className="bg-[#171717]  text-white pt-3 pb-1 md:px-3 ">
       <div  className='flex justify-between items-center'>
         <div className="flex items-center md:gap-2 gap-1 ">
           <span className={`mr-2 text-xl p-1 md:p-2 md:hidden hover:bg-[#818CF8] rounded-sm  ${disp ? "bg-[#818CF8]" : null}`} onClick={()=>setDisp(prev=>!prev)}>&#9776;</span>
@@ -90,10 +90,10 @@ export default function Header(){
             value={text}
             onChange={(e)=>setText(e.target.value)}
             placeholder="Search..."
-            className="bg-black border-1 border-[#3b3a3a] hidden text-white px-3 py-2 rounded-lg md:w-[50vw] md:block  "
+            className="bg-black border-1  outline-[#818CF8] border-[#3b3a3a] hidden text-white px-3 py-2 rounded-lg md:w-[50vw] md:block  "
             />
             { text.length > 0 && (
-              <div className='absolute top-28 md:top-15 md:w-[50vw] w-[95vw] left-2 md:left-20 border-1 rounded-lg mt-1 bg-[#171717] border-white px-2 flex-col'>
+              <div className='absolute  top-28 md:top-15 md:w-[50vw] w-[98vw] left-1 md:left-20 border-1 border-[#3b3a3a] rounded-lg  bg-[#171717]  px-2 flex-col'>
                 {!load ? (
                   data.map((item) => (
                     <div key={item._id || item.error} className='my-4'>
@@ -124,18 +124,18 @@ export default function Header(){
             }`}>{item.name}</button></Link> : null
           })}
           {authStatus ? <button onClick={handleLogout} className="border-[#818CF8] border-2 text-[#818CF8] lg:px-4 md:block hidden  px-2 py-2 rounded-lg">Logout</button> : null}
-          {authStatus ? <span className="flex text-xl items-center gap-2">
+          {authStatus ? <span className="flex text-xl mr-2 items-center gap-2">
             ♙  {userName}
             </span> : null}
         </div>
       </div>
-      <div className='mt-2'>
+      <div className='mt-2 px-1'>
       <input
           type="text"
           value={text}
           onChange={(e)=>setText(e.target.value)}
           placeholder="Search..."
-          className="bg-black border-1 border-[#3b3a3a] text-white px-3 py-2 rounded-lg md:hidden w-full  "
+          className="bg-black border-1 mx-auto  outline-[#818CF8] border-[#3b3a3a] text-white px-3 py-2 rounded-lg md:hidden w-full  "
           />
       </div>
     </header>
