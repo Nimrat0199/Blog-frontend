@@ -1,9 +1,11 @@
+const API_URL = import.meta.env.VITE_API_URL;
+
 class AuthService {
 
 
     async createAccount({username, password}){
         try {
-            const response = await fetch("/api/signup", {
+            const response = await fetch(`${API_URL}/signup`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -28,7 +30,7 @@ class AuthService {
 
     async login({username, password}) {
         try {
-            const response = await fetch("/api/login", {
+            const response = await fetch(`${API_URL}/login`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -55,7 +57,7 @@ class AuthService {
     async logout() {
 
         try{
-            const response= await fetch("/api/logout", {
+            const response= await fetch(`${API_URL}/logout`, {
                 method: "POST",
                 credentials: "include", // Important for sending cookies
               });

@@ -1,7 +1,9 @@
+const API_URL = import.meta.env.VITE_API_URL;
+
 class commentsFunc {
     async getComments(blogId) {
         try {
-            const response = await fetch(`/api/blogs/${blogId}/comments`, {
+            const response = await fetch(`${API_URL}/blogs/${blogId}/comments`, {
                 method: "GET",
                 credentials: "include",
             });
@@ -16,7 +18,7 @@ class commentsFunc {
 
     async createComment(blogId, com) {
         try {
-            const response = await fetch(`/api/blogs/${blogId}/comments`, {
+            const response = await fetch(`${API_URL}/blogs/${blogId}/comments`, {
                 method: "POST",
                 credentials: "include",
                 headers: {
@@ -35,7 +37,7 @@ class commentsFunc {
 
     async updateComment(blogId,commentId, content) {
         try {
-            const response = await fetch(`/api/blogs/${blogId}/comments/${commentId}`, {
+            const response = await fetch(`${API_URL}/blogs/${blogId}/comments/${commentId}`, {
                 method: "PUT",
                 credentials: "include",
                 headers: {
@@ -54,7 +56,7 @@ class commentsFunc {
 
     async deleteComment(blogId,commentId) {
         try {
-            const response = await fetch(`/api/blogs/${blogId}/comments/${commentId}`, {
+            const response = await fetch(`${API_URL}/blogs/${blogId}/comments/${commentId}`, {
                 method: "DELETE",
                 credentials: "include",
             });

@@ -6,6 +6,7 @@ import { Outlet } from 'react-router-dom'
 import Header from './components/Header'
 import Load from './components/Load'
 import { useNavigate } from 'react-router-dom'
+const API_URL = import.meta.env.VITE_API_URL;
 
 function App() {
   const user = useSelector((state)=>state.auth.userData);
@@ -15,7 +16,7 @@ function App() {
 
 
   useEffect(() => {
-    fetch("/api/user", {
+    fetch(`${API_URL}/user`, {
       credentials: "include", 
     })
     .then((resp) => resp.json())

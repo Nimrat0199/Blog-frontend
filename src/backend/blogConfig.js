@@ -1,7 +1,9 @@
+const API_URL = import.meta.env.VITE_API_URL;
+
 class blogsfunc{
     async getAllBlogs(){
         try{
-            const response = await fetch("/api/blogs", {
+            const response = await fetch(`${API_URL}/blogs`, {
                 method: "GET",
                 credentials: "include" // Ensures cookies are sent
               });
@@ -15,7 +17,7 @@ class blogsfunc{
 
     async searchBlogs(text){
         try{
-            const response = await fetch("/api/search", {
+            const response = await fetch(`${API_URL}/search`, {
                 method: "POST",
                 credentials: "include", // Ensures cookies are sent
                 headers: { "Content-Type": "application/json" }, // Set JSON header
@@ -31,7 +33,7 @@ class blogsfunc{
 
     async getUserBlogs(id){
         try{
-            const response = await fetch(`/api/userBlogs/${id}`, {
+            const response = await fetch(`${API_URL}/userBlogs/${id}`, {
                 method: "GET",
                 credentials: "include" // Ensures cookies are sent
               });
@@ -45,7 +47,7 @@ class blogsfunc{
 
     async getBlog(id){
         try{
-            const response = await fetch(`/api/blogs/${id}`, {
+            const response = await fetch(`${API_URL}/blogs/${id}`, {
                 method: "GET",
                 credentials: "include" // Ensures cookies are sent
               });
@@ -59,7 +61,7 @@ class blogsfunc{
 
     async createBlog(formData){
         try{
-            const response = await fetch("/api/blogs", {
+            const response = await fetch(`${API_URL}/blogs`, {
                 method: "POST",
                 credentials: "include" ,
                 body: formData,
@@ -78,7 +80,7 @@ class blogsfunc{
 
     async deleteBlog(id){
         try{
-            const resp = await fetch(`/api/blogs/${id}`, {
+            const resp = await fetch(`${API_URL}/blogs/${id}`, {
                 method: 'DELETE',
                 headers: {
                   'Content-Type': 'application/json',
@@ -97,7 +99,7 @@ class blogsfunc{
             const formData = new FormData();
             formData.append("file", file);  // Append file
     
-            const response = await fetch(`/api/blogs/${id}/img`, {
+            const response = await fetch(`${API_URL}/blogs/${id}/img`, {
                 method: 'PUT',
                 body: formData,  // Send FormData
             });
@@ -114,7 +116,7 @@ class blogsfunc{
 
     async updateBlog(id,data){
         try{
-            const response = await fetch(`/api/blogs/${id}`, {
+            const response = await fetch(`${API_URL}/blogs/${id}`, {
                 method: 'PUT',
                 headers: {
                   'Content-Type': 'application/json',
