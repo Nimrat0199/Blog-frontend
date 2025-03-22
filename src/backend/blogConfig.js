@@ -82,6 +82,7 @@ class blogsfunc{
         try{
             const resp = await fetch(`${API_URL}/blogs/${id}`, {
                 method: 'DELETE',
+                credentials: "include",
                 headers: {
                   'Content-Type': 'application/json',
                 },
@@ -101,6 +102,7 @@ class blogsfunc{
     
             const response = await fetch(`${API_URL}/blogs/${id}/img`, {
                 method: 'PUT',
+                credentials: "include",
                 body: formData,  // Send FormData
             });
     
@@ -118,6 +120,7 @@ class blogsfunc{
         try{
             const response = await fetch(`${API_URL}/blogs/${id}`, {
                 method: 'PUT',
+                credentials: "include",
                 headers: {
                   'Content-Type': 'application/json',
                 },

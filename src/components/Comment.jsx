@@ -23,7 +23,7 @@ export default function Comment({blogId,body,onDelete}) {
       if (body?.userId && user?._id) {
           setDel(body.userId === user._id);
       }
-    }, []);
+  }, []);
 
 
     return (

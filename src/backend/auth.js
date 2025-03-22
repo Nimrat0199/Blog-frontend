@@ -32,6 +32,7 @@ class AuthService {
         try {
             const response = await fetch(`${API_URL}/login`, {
               method: "POST",
+              credentials: "include",
               headers: {
                 "Content-Type": "application/json",
               },
