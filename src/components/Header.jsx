@@ -93,7 +93,7 @@ export default function Header(){
             className="bg-black border-1 border-[#3b3a3a] hidden text-white px-3 py-2 rounded-lg md:w-[50vw] md:block  "
             />
             { text.length > 0 && (
-              <div className='absolute top-28 md:top-15 md:w-[50vw] w-[95vw] left-5 md:left-20 border-1 rounded-lg mt-1 bg-[#171717] border-white px-2 flex-col'>
+              <div className='absolute top-28 md:top-15 md:w-[50vw] w-[95vw] left-2 md:left-20 border-1 rounded-lg mt-1 bg-[#171717] border-white px-2 flex-col'>
                 {!load ? (
                   data.map((item) => (
                     <div key={item._id || item.error} className='my-4'>
