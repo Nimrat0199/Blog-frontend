@@ -5,9 +5,9 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   plugins: [react(),tailwindcss(),],
   server: {
-    proxy: { //http://localhost:3000/https://blogbackend-production-dcc5.up.railway.app/https://blog-backend-zq11.onrender.com
+    proxy: { 
       "/api": {
-        target: "https://blogbackend-production-dcc5.up.railway.app/",
+        target: "https://blog-backend-zq11.onrender.com",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
