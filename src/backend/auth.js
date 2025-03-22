@@ -62,7 +62,7 @@ class AuthService {
                 method: "POST",
                 credentials: "include", // Important for sending cookies
               });
-              const data = response.json();
+              const data = await response.json();
               return {message:data.message};
         }
         catch(err){
