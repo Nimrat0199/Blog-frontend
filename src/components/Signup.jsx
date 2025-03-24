@@ -11,7 +11,7 @@ export default function Signup() {
 
   const handleSignup = (e) => {
     e.preventDefault();
-    console.log("creating account:", username, password);
+
     authService.createAccount({username,password})
     .then(res=>{
       if(res.error) setErr(res.error);

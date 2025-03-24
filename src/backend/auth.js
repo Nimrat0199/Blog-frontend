@@ -19,7 +19,7 @@ class AuthService {
                 return {error:data.message};
             }
         
-            console.log("Account created:", data);
+
             return data;
         
           } catch (error) {
@@ -46,7 +46,7 @@ class AuthService {
               return {error:data.message};
             }
         
-            console.log("Login Successful ",data);
+         
 
             return data;
 

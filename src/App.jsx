@@ -22,20 +22,15 @@ function App() {
     .then((resp) => resp.json())
     .then((userData)=>{
       if (userData) {
-        console.log("userDataa :",userData)
         dispatch(login(userData))
       } else {
         dispatch(logout());
-        navigate('/login')
       }
     })
     .catch((err) => console.error("Error fetching user:", err))
     .finally(() => setLoading(false))
   }, [])
 
-  useEffect(() => {
-    console.log('User updated:', user);
-  }, [user]);
 
 
 

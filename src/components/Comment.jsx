@@ -14,7 +14,6 @@ export default function Comment({blogId,body,onDelete}) {
     const res = await CommentFeatures.deleteComment(blogId,body._id);
     if (res.error) console.log("error deleting :" , res.error);
     else{
-      console.log("deleting comment :",res);
       onDelete(body._id);
     } 
   }

@@ -66,10 +66,9 @@ class blogsfunc{
                 credentials: "include" ,
                 body: formData,
             });
-            console.log("creating Blog")
-            console.log("response is : ", response);
+           
             const data = await response.json();
-            console.log("data is : " , data);
+        
             if(!response.ok) return {error: data.message || "Something went wrong" };
             return data;
         }catch(err){

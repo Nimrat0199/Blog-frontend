@@ -27,7 +27,7 @@ export default function Blog(){
   const fetchBlog = async () => {
     try {
       const res = await Blogfeatures.getBlog(id);
-      console.log("Fetched blog data:", res);
+
       if (res.error) setErr(res.error);
       else{
         setBlog(res);
@@ -43,7 +43,7 @@ export default function Blog(){
     try {
       setLoad1(true);
       const res = await CommentFeatures.getComments(id);
-      console.log("Fetched comments:", res);
+
       if (res.error) setErr(res.error);
       else{
         setComments(res);
@@ -60,14 +60,12 @@ export default function Blog(){
         setLoad2(true);
         
         const res = await CommentFeatures.createComment(id, {content,author:user?.username});
-        console.log("user",user)
         if (!res || res.error) {
           console.log(res?.error || "Failed to add comment");
             setErr(res?.error || "Failed to add comment");
             return;
         }
 
-        console.log("Added comment:", res);
         setComments(prev => [res, ...prev]); // Ensures re-render
     } catch (err) {
         setErr(err.message);
@@ -96,10 +94,7 @@ export default function Blog(){
   }, []);
 
   useEffect(() => {
-    console.log("Blog userID:", blog?.userId);
-    console.log("User:", user);
     if (blog?.userId && user?._id) {
-        console.log("Setting delete button visibility");
         setDel(blog.userId === user._id);
     }
   }, [blog]);
@@ -117,14 +112,14 @@ export default function Blog(){
 
           <div className="md:w-[80vw] w-[90vw] rounded-lg text-white bg-[#171717] pb-10 ">
               <img src={blog?.imageurl} alt="image" className="w-full h-auto mx-auto" />
-              <h1 className="text-2xl mt-10 ml-2 md:ml-10">😴{blog.author}</h1>
-              <h2 className="text-sm pl-10 md:pl-18">posted on {formattedDate}</h2>
+              <h1 className="text-lg md:text-2xl mt-10 ml-2 md:ml-10">😴{blog.author}</h1>
+              <h2 className="text-sm pl-7 md:pl-18">posted on {formattedDate}</h2>
               <h1 className="md:text-4xl text-2xl text-center mt-15  px-5 md:px-10 ">{blog?.title}</h1>
               <p className=" pt-10 md:text-xl break-words text-lg text-left px-2 md:px-10">{blog?.content}</p>
               {/* {err ? <p className="text-xl text-red-500 bg-white p-3">{err}</p> : null} */}
               <div className=" border-t-white border-1 my-4"></div>
               <div className="px-3 md:px-15">
-                  <h1 className="md:text-2xl text-lg">Top Comments ({comments.length})</h1>
+                  <h1 className="md:text-2xl text-md">Top Comments ({comments.length})</h1>
               </div>
               <div id="comments-section" className="md:px-15 px-5 pt-4 mt-4 bg-[#171717] rounded-md ">
                   <textarea
@@ -133,8 +128,9 @@ export default function Blog(){
                       value={content}
                       onChange={(e)=>{setContent(e.target.value)}}
                   ></textarea>
-                  <button className="md:p-2 p-1 bg-blue-500 mt-2 rounded-md" onClick={addComment}>Submit</button>
+                  <button className=" p-1 bg-blue-500 mt-2 rounded-md" onClick={addComment}>Submit</button>
                   {load2 ? <p>Adding comment...</p> : null}
+                  {err ? <span className=" mx-4 p-1 bg-red-400 rounded-md ">{err}</span> : null}
               </div>
               {load1 ? <p>Loading comments...</p> : null}
               {comments.map((com)=><Comment blogId={blog._id} body={com} onDelete={handleDelete} />)}
@@ -142,8 +138,8 @@ export default function Blog(){
           <div>
               {del ? (
                   <>
-                    <button className="text-white p-2 rounded-md mr-2 bg-red-500 " onClick={delBlog}>Delete</button>
-                    <Link to={`/blog/${id}/edit`}><button className="text-white py-2 px-4 rounded-md mr-2 bg-green-500 " >Edit</button></Link>
+                    <button className="text-white p-1 md:p-2 rounded-md mr-2 bg-red-500 " onClick={delBlog}>Delete</button>
+                    <Link to={`/blog/${id}/edit`}><button className="text-white p-1 md:p-2 px-2 rounded-md mr-2 bg-green-500 " >Edit</button></Link>
                   </>
               ) : null}
           </div>

@@ -16,7 +16,7 @@ export default function Login() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log("Logging in with:", username, password);
+
     authService.login({username,password})
     .then(res=>{
       if(res.error) setErr(res.error);

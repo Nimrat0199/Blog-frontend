@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Blogfeatures from "../backend/blogConfig"
-import { useDispatch } from "react-redux";
+import { useDispatch ,useSelector} from "react-redux";
 import { addBlog } from "../store/blogSlice";
 import { useNavigate } from "react-router-dom";
 
@@ -12,6 +12,11 @@ export default function BlogEditor() {
   const dispatch  = useDispatch();
   const navigate = useNavigate();
   const [load,setLoad ] = useState(false);
+  const authStatus = useSelector(state=>state.auth.status)
+
+  useEffect(()=>{
+    !authStatus ? navigate('/login') : null
+  },[authStatus])
 
   const create = ()=>{
     setLoad(true);
@@ -20,7 +25,7 @@ export default function BlogEditor() {
     formData.append("title", title);
     formData.append("content", content);
     if (file) formData.append("file", file);
-    console.log(formData);
+
     Blogfeatures.createBlog(formData)
     .then(res=>{
       if(res.error){

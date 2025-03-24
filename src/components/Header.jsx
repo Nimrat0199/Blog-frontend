@@ -20,7 +20,6 @@ export default function Header(){
   const fetchBlogs = async () => {
     setLoad(true);
     const a = await Blogfeatures.searchBlogs(text);
-    console.log("searched blog" , a);
     setData(a);
     setLoad(false);
 };
@@ -33,6 +32,11 @@ export default function Header(){
 
   const navItems = [ 
     {
+      name: "Create Post",
+      slug: "/new",
+      active: true,
+  },
+    {
       name: "Login",
       slug: "/login",
       active: !authStatus,
@@ -41,28 +45,22 @@ export default function Header(){
         name: "Signup",
         slug: "/signup",
         active: !authStatus,
-    },
-    {
-        name: "Create Post",
-        slug: "/new",
-        active: authStatus,
-    },
+    }
+    
   ]
 
   const links = [
     { name: "Home", icon: "🏠", path:"/" , active: true, },
     { name: "Reading List", icon: "📚" , path:"/" ,active: authStatus,},
     { name: "My Blogs", icon: "📝" , path:"/my-blogs"  ,active: authStatus,},
-    { name: "Create Post", icon: "✍️" , path:"/new"  ,active: authStatus,},
-    { name: "Logout", icon: "✍️" , path:"/new"  ,active: authStatus,}
+    { name: "Create Post", icon: "✍️" , path:"/new"  ,active: authStatus,}
   ];
 
   const handleLogout =()=>{
     authService.logout()
     .then(res=>{
-        console.log(res.message);
         dispatch(logout());
-        navigate('/login');
+        navigate('/');
     }).catch(err=>console.log(err.message));
   }
 
@@ -75,8 +73,10 @@ export default function Header(){
           { disp ? <div className='text-white p-3 bg-black z-10 absolute top-15 left-0 text-lg border-[#3b3a3a] border-2 rounded-sm w-[180px]'>
             <ul>
               {links.map(it=>{
-                return it.active ? <li className='py-1 hover:bg-[#8581f8ad]  rounded-sm '><Link to={it.path}>{it.icon} <span className='hover:underline'>{it.name}</span></Link></li> : null
+                 return it.name=="Create Post" ? <li className='py-1 hover:bg-[#8581f8ad]  rounded-sm '><Link to={it.path}>{it.icon} <span className='hover:underline'>{it.name}</span></Link></li> : 
+                 it.active ? <li className='py-1 hover:bg-[#8581f8ad]  rounded-sm '><Link to={it.path}>{it.icon} <span className='hover:underline'>{it.name}</span></Link></li> : null
               })}
+              {authStatus ? <li className='py-1 hover:bg-[#8581f8ad]  rounded-sm ' onClick={handleLogout}><span className='hover:underline'>Logout</span></li> : null}
             </ul>
           </div> : null
           }

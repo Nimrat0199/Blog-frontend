@@ -19,7 +19,7 @@ export default function EditBlog() {
   const fetchBlog = async () => {
     try {
       const res = await Blogfeatures.getBlog(id);
-      console.log("Fetched blog data:", res);
+
       if (res.error) setErr(res.error);
       else{
         setBlog(res);
@@ -36,8 +36,6 @@ export default function EditBlog() {
     
     if (data.error) {
     console.log("Error updating image", data.error);
-    } else {
-    console.log("Image updated successfully");
     }
    };
 
@@ -48,12 +46,10 @@ export default function EditBlog() {
     if (content) updateData.content = content;
 
     const data = await Blogfeatures.updateBlog(id, updateData);
-    console.log("data",data);
+
 
     if (data?.error) {
         console.log("Error  blog", data.error);
-    } else if(data) {
-        console.log("Blog updated successfully");
     }
    };
 
